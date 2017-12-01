@@ -1,7 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { HttpModule } from "@angular/http";
+import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
+
+
 import {
   MatButtonModule,
   MatCheckboxModule,
@@ -30,13 +33,14 @@ import { NewMessageComponent } from './new-message/new-message.component';
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,
+    FormsModule,
       MatButtonModule,
       MatCheckboxModule,
-      MatCardModule, 
+      MatCardModule,
       MatInputModule,
       MatSnackBarModule,
       MatToolbarModule
-    
+
   ],
   providers: [WebService],
   bootstrap: [AppComponent]
