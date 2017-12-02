@@ -2,24 +2,29 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { MatSnackBar } from '@angular/material';
+import { Subject } from 'rxjs/Rx';
 
 @Injectable()
 export class WebService {
   BASE_URL = 'http://localhost:1234/api';
 
-  messages = [];
+  private messageStore = [];
+  private messageSubject = new Subject();
+  messages = this.messageSubject.asObservable();
 
   constructor(private http: Http, private sb: MatSnackBar) {
     this.getMessages();
   }
-  async getMessages() {
-    try {
-      const response = await this.http.get(this.BASE_URL + '/messages').toPromise();
-      this.messages = response.json();
-    } catch (error) {
-      this.handleError('Unable to get messages');
-    }
-
+  getMessages(user?) {
+      user = (user) ? '/' + user : '';
+      this.http.get(this.BASE_URL + '/messages' + user).subscribe(
+        response => {
+          this.messageStore = response.json();
+          this.messageSubject.next(this.messageStore);
+        }, error => {
+            this.handleError('Unable to get messages');
+        }
+      );
  }
    private handleError(error) {
     console.error(error);
@@ -29,7 +34,7 @@ export class WebService {
 
     try {
       const response = await this.http.post(this.BASE_URL + '/message', message).toPromise();
-      this.messages.push(response.json());
+      this.messageStore.push(response.json());
     } catch (error) {
       this.handleError('unable to Post the message');
     }

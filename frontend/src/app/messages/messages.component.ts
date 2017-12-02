@@ -12,8 +12,9 @@ export class MessagesComponent implements OnInit {
   // messages = [];
   constructor(private webService: WebService, private route: ActivatedRoute) { }
 
-  async ngOnInit() {
-  console.log(this.route.snapshot.params.name);
+  ngOnInit() {
+  const name = this.route.snapshot.params.name;
+  this.webService.getMessages(name);
   }
 
 
