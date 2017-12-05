@@ -25,6 +25,7 @@ import { NewMessageComponent } from './new-message/new-message.component';
 import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { AuthService } from './auth.service';
 
 
 const routes = [
@@ -69,7 +70,7 @@ const routes = [
       MatToolbarModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [WebService],
+  providers: [WebService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

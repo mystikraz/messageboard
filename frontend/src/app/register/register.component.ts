@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 const pureEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -17,7 +18,7 @@ export class RegisterComponent implements OnInit {
 
   form;
 
-  constructor(private fb: FormBuilder) { 
+  constructor(private fb: FormBuilder, private auth : AuthService) { 
     this.form = fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -33,6 +34,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     console.log(this.form.errors);
+    this.auth.register(this.form.value);
   }
 
   isValid(control) {
