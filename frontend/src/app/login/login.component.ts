@@ -12,14 +12,15 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   }
+
   loginData = {
     email: '',
     password: ''
   }
 
   login() {
-    console.log(this.loginData);
-    this.auth.login(loginData);
+    // console.log(this.loginData);
+    this.auth.login(this.loginData);
   }
 
 }
