@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { Http } from '@angular/http';
 import { WebService } from '../web.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-new-message',
@@ -11,10 +12,10 @@ export class NewMessageComponent implements OnInit {
   // @Output() onPosted = new EventEmitter();
   // @Output() onPosted: EventEmitter<any> = new EventEmitter<any>();
   message = {
-    owner: '',
+    owner: this.auth.name,
     text: ''
   };
-  constructor(private webService: WebService) { }
+  constructor(private webService: WebService, private auth: AuthService) { }
   ngOnInit() {
   }
 

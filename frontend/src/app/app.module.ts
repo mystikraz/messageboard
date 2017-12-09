@@ -27,6 +27,7 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthService } from './auth.service';
 import { LoginComponent } from './login/login.component';
+import { UserComponent } from './user/user.component';
 
 
 const routes = [
@@ -49,6 +50,10 @@ const routes = [
   {
   path: 'login',
   component: LoginComponent
+  },
+  {
+  path: 'user',
+  component: UserComponent
   }
 ];
 
@@ -60,7 +65,8 @@ const routes = [
     NavComponent,
     HomeComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
